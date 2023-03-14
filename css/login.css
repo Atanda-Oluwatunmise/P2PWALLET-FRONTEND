@@ -1,0 +1,184 @@
+/* primary-color: #003f88, 03045e, 3f37c9
+    secondary-color: #c1121f
+    tertiary-color: #e5e5e5, #f8f9fa, #e9ecef
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e5e5e5;
+}
+
+.container {  
+    display: flex; 
+    position: relative;
+    height: 500px;
+    width: 800px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 0 20px;
+}
+
+.container .forms {
+    display: flex;
+    align-items: center;
+    height: 440px;
+    width: 100%;
+    /* transition: height 0.2s ease; */
+}
+
+.container .form-login {
+    width: 100%;
+    padding: 30px;
+    background-color: #fff;
+    /* transition: margin-left 0.18s ease; */
+}
+
+.container .form-login .title {
+    position: relative;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.container .form-login img {
+    width: 200px;
+    margin: auto;
+    display: block;
+}
+
+.form-login .title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background-color: #003f88;
+    border-radius: 25px;
+}
+
+.form-login .input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.input-field input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent;
+    transition: all 0.2s ease-out;
+}
+
+.input-field input:is(:focus, :valid){
+    border-bottom-color: #003f88;
+}
+
+.input-field i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.input-field input:is(:focus, :valid) ~ i{
+    color: #003f88;
+}
+
+.input-field i.icon {
+    left: 0;
+}
+
+.input-field i.showHidePw {
+    right: 0;
+}
+
+
+.sideImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #003f88;
+}
+
+.sideImage img {
+    width: 300px;
+    height: 300px;
+    opacity: 0.8;
+}
+
+.form-login .checkbox-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.checkbox-text .checkbox-content {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-content input{
+    margin: 0 8px -2px 4px;
+    accent-color: #03045e;
+}
+
+.form-login .text {
+    color: #333;
+    font-size: 14px;
+}
+
+.form-login a.text{
+    color: #c1121f;
+    text-decoration: none;
+}
+
+.form-login a:hover {
+    text-decoration: underline;
+}
+
+.form-login .button {
+    margin-top: 35px;
+}
+
+.form-login .button input {
+    border: none;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    background-color: #003f88;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.button input:hover {
+    background-color: #03045e;
+}
+
+#login-signup {
+    margin-top: 30px;
+    text-align: center;
+}

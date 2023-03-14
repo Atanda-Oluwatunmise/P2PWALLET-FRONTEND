@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        
+        <link rel="stylesheet" href="../css/dashboard.css">
+    </head>  
+
+        <body>
+            <div class="container">
+                <aside>
+                    <div class="top">
+                        <!-- <img src="/images/removed-globus.png"> -->
+                        <h2 class="logo">GLO<span class="danger">Wallet</span></h2>  
+                        <div class="close" id="close-button">
+                            <span class="material-symbols-sharp">close</span>
+                        </div>   
+                    </div>
+                    <div class="sideBar">
+                        <a href="#" class="active">
+                            <span class="material-symbols-sharp">dashboard</span>
+                            <h3 class="">Dashboard</h3>
+                        </a>
+                        <a href="transfer.html">
+                            <span class="material-symbols-sharp">wallet</span>
+                            <h3 class="">Transfers</h3>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-sharp">history</span>
+                            <h3 class="">Transation History</h3>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-sharp">settings</span>     
+                            <h3 class="">Profile Settings</h3>
+                        </a>
+                        <a href="#" onclick="logOut()">
+                            <span class="material-symbols-sharp">logout</span>                           
+                            <h3 class="">Logout</h3>
+                        </a>
+                    </div>
+                </aside>
+
+                <main>
+                    <h1>Dashboard</h1>
+                    <div class="name" >
+                        <h3>Welcome <span id="outputName"></span></h3>
+                    </div>
+                    <div class="insights">
+                        <div class="accountBalance">
+                            <span class="material-symbols-sharp">savings</span>
+
+                            <div class="middle">
+                                <div class="left">
+                                   <h3>Account Number</h3>
+                                   <h1 id="accNumber"></h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accountBalance">
+                            <span class="material-symbols-sharp">savings</span>
+
+                            <div class="middle">
+                                <div class="left">
+                                   <h3>Account Balance</h3>
+                                   <h1 id="accountBal"></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="history">
+                        <h2>Debit Transations</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Account Number</th>
+                                    <th>Currency</th>
+                                    <th>Amount</th>
+                                    <th>Date of Transaction</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="table-body">
+                            </tbody>
+                        </table>
+                        <a href="#">Show all</a>
+
+                        <h2>Credit Transations</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Account Number</th>
+                                    <th>Currency</th>
+                                    <th>Amount</th>
+                                    <th>Date of Transaction</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="ctable-body">
+                            </tbody>
+                        </table>
+                        <a href="#">Show all</a>
+
+                    </div>
+                </main>
+                
+            </div>
+            <script src="/jsFiles/dashboardScript.js"></script>
+            <!-- <script src="/jsFiles/script.js"></script> -->
+        </body>
+
+</html>

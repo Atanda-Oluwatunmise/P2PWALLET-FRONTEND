@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        <link rel="stylesheet" href="../css/signup.css">
+    </head>    
+        <body>
+            <div class="signup-box">
+                <img src="/images/Globus Logo.svg" alt="Logo" class="image">
+                <h2 class="title">Register</h2>
+                <form action="POST">
+                    <div class="input-field">
+                        <input type="text" placeholder="Enter your Username" id="username" required></input>
+                        <i class="uil uil-user icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Enter your First Name" id="firstname" required></input>
+                        <i class="uil uil-user icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Enter your Last Name" id="lastname" required></input>
+                        <i class="uil uil-user icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" placeholder="Enter your Email" id="email" required></input>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Enter your Phone Number" id="phoneNumber" required></input>
+                        <i class="uil uil-phone icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Enter your Address" id="address" required></input>
+                        <i class="uil uil-home icon"></i>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Enter your Password" id="password" required></input>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="Confirm Password" id="confirm-password" required></input>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="button" value="Submit" onclick="submitForm()">
+                    </div>
+                </form>
+                
+                <div id="login-signup">
+                    <span class="text">Already have an account?
+                        <a href="/html/login.html" class="text signup-link">Login</a>
+                    </span>
+                </div>
+            </div>
+            <script src="/jsFiles/script.js"></script>
+        </body>
+</html>
