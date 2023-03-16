@@ -59,7 +59,6 @@ function clearFormUser() {
     document.getElementById("confirm-password").value = "";
 }
 
-
 function submitForm() {
     let data = getFormUser();
 

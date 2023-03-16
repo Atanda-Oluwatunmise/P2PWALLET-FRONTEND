@@ -119,6 +119,7 @@ body {
     align-items: center;
     width: 100%;
     background-color: #003f88;
+    opacity: 1;
 }
 
 .sideImage img {
