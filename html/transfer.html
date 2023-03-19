@@ -44,68 +44,30 @@
                     </div>
                 </aside>
 
-
-                
                 <div class="form-container">
+                    <div class="txnBalance">
+                        <h3>Balance</h3>
+                        <span>&#8358; <h3 id="txnBalance"></h3></span>
+                    </div>
                     <h2 class="form-title">Transfer Details</h2>
                     <form action="" class="checkout-form">
                         <div class="input-line">
                             <label for="name">Account</label>
-                            <input type="text" id="account" placeholder="Enter the Account number, Email or Username" onchange="getDetails()" autocomplete="off">
+                            <input type="text" id="account" placeholder="Enter the Account number, Email or Username" autocomplete="off">
                             <div class="input-container">
                                 <div id="accountDetails"></div>
                             </div>   
                         </div>
-
-
                         
                         <div class="input-line" id="input-amount">
                             <label for="name">Amount</label>
                             <input type="number" step="0.01" id="amount" placeholder="NGN">
                         </div>
-                        <!-- <div class="input-container">
-                            <div class="input-line">
-                                <label for="name">Expiring Date</label>
-                                <input type="text" name="name" id="name" placeholder="09-21">
-                            </div>
-                            <div class="input-line">
-                                <label for="name">CVC</label>
-                                <input type="text" name="name" id="name" placeholder="***">
-                            </div>
-                        </div> -->
                         <input type="button" id="txnButton" value="Complete Transaction" >
                     </form>
                 </div>
-                <!-- <main>
-                    <div class="transfers">
-                            <div class="formSection">
-                            <h1 class="text-payment"> Payment Details</h1>
-                            <form>
-                                <div class="form-group">
-                                    <label class="form-label" for="account">Account Number</label>
-                                    <input class="form-control" type="text" id="account">
-                                </div>
-
-                                <div id="accountDetails">
-                                    
-                                </div> 
-
-                                <div class="form-group">
-                                    <label class="form-label" for="amount">Amount</label>
-                                    <input class="form-control" type="number" step="0.01" id="amount">
-                                </div> 
-
-                                <div class="">
-                                    <div class="btn btn-primary mb-3" onclick="makeTransfer()">
-                                        <span class="pay" id>Pay</span>
-                                    </div>
-                                </div>
-                            </form>
-                            </div>
-                    </div>
-                </main> -->
             </div>
-            <script src="/jsFiles/dashboardScript.js"></script>
+            <script src="/jsFiles/transfer.js"></script>
             <!-- <script src="/jsFiles/dashboardScript.js"></script> -->
         </body>
 

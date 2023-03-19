@@ -24,10 +24,10 @@ body {
 
 .container {
     display: grid;
-    width: 96%;
+    width: 100%;
     margin: 0 auto;
     gap: 1.8rem;
-    grid-template-columns: 14rem auto 23rem;
+    grid-template-columns: 14rem auto 20px;
 }
 
 a {
@@ -171,11 +171,12 @@ main .name h3 {
 
 main .insights {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.6rem;
+    /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
     margin-top: 36px; 
-
+    max-width: 100px;
+    width: 100%;
     /* display: grid;
     grid-template-columns: repeat(3, 1fr);
 	grid-gap: 24px;
@@ -183,7 +184,6 @@ main .insights {
 }
 
 main .accountBalance{
-
     padding: 24px;
 	background: #fff;
 	border-radius: 20px;
@@ -199,7 +199,7 @@ main .accountBalance:hover {
     cursor: pointer;
 }
 
-main .accountBalance span {
+main .accountBalance span{
     background: var(--primary2-color);
 	color: var(--primary-color);
     /* background: var(--primary-color);
@@ -211,6 +211,14 @@ main .accountBalance span {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+#naira{
+    color: var(--color-text-dark);
+    background: none;
+	font-size: 30px;
+    height: 0;
+
 }
 
 .middle h1{
@@ -305,13 +313,18 @@ main .accountBalance span {
     width: 100%;
     border-radius: 1.5rem;
     padding: 1.8rem;
-    text-align: center;
     box-shadow: 0 2rem 3rem #fff;
     transition: all 300ms ease;
 }
 
-.history table tr {
+.history table th {
+    text-align: center;
+
+}
+
+.history table th {
     color: var(--primary-color);
+
 }
 
 .history table:hover {
@@ -319,9 +332,9 @@ main .accountBalance span {
 }
 
 .history table tbody td {
-    height: 2.8rem;
+    height: 2rem;
     border-bottom: 1px solid rgba(132, 139, 200, 0.18);
-    color: #677483;
+    /* color: #677483; */
 }
 
 .history table tbody tr:last-child td{
@@ -334,6 +347,15 @@ main .accountBalance span {
     margin: 1rem auto;
     color: var(--primary-color);
 }
+
+
+.red-text{
+   color: red;
+}
+.green-text{
+    color: green;
+}
+
 
 
 /* new */
@@ -359,7 +381,7 @@ main .accountBalance span {
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
 }
 
 .input-line{
@@ -412,7 +434,15 @@ input[type="number"]::placeholder{
     justify-content: space-between;
     align-items:flex-start;
     width: 100%;
+    color: var(--secondary-color);
+    margin-top: 20px;
 }
+
+#accountDetails p {
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
 .input-container{
     width: 100%;
 }
@@ -435,4 +465,9 @@ input[type="button"]{
 
 input[type="button"]:hover{
     background-color: var(--secondary-color);
+}
+
+#txnBalance {
+    font-size: 20px;
+    display: flex;
 }

@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../css/dashboard.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
-        <script src="https://code.jquery.com/jquery.3.5.1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
         <script src = "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     </head>  
@@ -69,22 +69,23 @@
                             <div class="middle">
                                 <div class="left">
                                    <h3>Account Balance</h3>
-                                   <h1 id="accountBal"></h1>
+                                   
+                                   <span id="naira">&#8358;<h1 id="accountBal"></h1></span>
                                 </div>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="history">
                         <h2>Transactions</h2>
                         <table id="table-head">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Account Number</th>
-                                    <th>Currency</th>
+                                    <th>Sender</th>
                                     <th>Amount</th>
                                     <th>Transaction Type</th>
+                                    <th>Receiver</th>
                                     <th>Date of Transaction</th>
                                 </tr>
                             </thead>
