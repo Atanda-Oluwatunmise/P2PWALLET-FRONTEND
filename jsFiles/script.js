@@ -1,3 +1,7 @@
+var userlogin = "http://localhost:5127/api/User/login";
+var userregister = "http://localhost:5127/api/User/register";
+
+
 const container = document.querySelector(".container"),
       pwShowHide = document.querySelectorAll(".showHidePw"),
       pwFields = document.querySelectorAll(".password");
@@ -24,6 +28,8 @@ pwShowHide.forEach(eyeIcon => {
     })
 })
 
+
+
 function getFormUser() {
     return {
         userName:document.getElementById("username").value,
@@ -36,6 +42,12 @@ function getFormUser() {
     }
 }
 
+function getQuestions(){
+    return{
+        question:document.getElementById("security-question").value,
+        answer:document.getElementById("security-answer").value
+    }
+}
 
 function loginUser() {
     return {
@@ -62,7 +74,7 @@ function clearFormUser() {
 function submitForm() {
     let data = getFormUser();
 
-    fetch('https://localhost:7085/api/User/Register', {
+    fetch(userregister, {
         method: 'POST',
         body: JSON.stringify(data),
         headers:{
@@ -70,14 +82,14 @@ function submitForm() {
             }
         }).then((res)=> res.json()).then(() => {
             clearFormUser();
-            loadLogin();
+            // loadLogin();
         })
     }
 
 function submitLogin() {
     let data = loginUser();
 
-    fetch('https://localhost:7085/api/User/Login', {
+    fetch(userlogin, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -90,6 +102,9 @@ function submitLogin() {
             localStorage.setItem("bearer", res.data.token);
             localStorage.setItem("Username", res.data.name);
             loadDashboard();
+        }
+        if (res.statusMessage == "Username/Password is Incorrect"){
+            document.getElementById("msg").innerHTML = res.statusMessage; 
         }
         console.log(res.statusMessage);
     })

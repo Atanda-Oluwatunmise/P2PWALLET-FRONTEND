@@ -22,7 +22,7 @@ body {
     background-color:#F5F5F5;
 }
 
-.container {
+.container-side {
     display: grid;
     width: 100%;
     margin: 0 auto;
@@ -151,6 +151,16 @@ aside .sideBar a:hover {
 
 aside .sideBar a:hover span {
     margin-left: 1rem;
+}
+
+.sub-menu{
+    /* display: none; */
+    padding-left: 8px;
+    transition: all 300ms ease;
+}
+
+.sub-menu a {
+    max-height: 0px;
 }
 
 main {
@@ -470,4 +480,17 @@ input[type="button"]:hover{
 #txnBalance {
     font-size: 20px;
     display: flex;
+}
+
+/* iframe html {
+    overflow: hidden;
+} */
+
+.swal2-html-container {
+    margin: 0 !important;
+    padding: 20px;
+}
+
+.swal2-input, .swal2-file, .swal2-textarea {
+    width: 500px !important;
 }
