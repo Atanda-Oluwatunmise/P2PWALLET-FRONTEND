@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="../css/resetpassword.css">
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
 
     </head>    
         <body>
@@ -32,17 +34,12 @@
                             <div class="input-field button">
                                 <input type="button" value="Send" onclick="sendEmailInfo()">
                             </div>
-                            <div class="w-100">
-                                <span id="msg"></span>
+                            <div class="passwordemailmsg">
+                                <span id="emailmsg"></span>
                             </div>
                         </form>
-
                     </div>
                 </div>
-<!-- 
-                <div class="sideImage">
-                    <img src="/images/walletIcon.png" alt="">
-                </div> -->
             </div>
             <script src="/jsFiles/email.js"></script>
         </body>

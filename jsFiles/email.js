@@ -12,6 +12,7 @@ function clearemailForm(){
 }
 
 function sendEmailInfo(){
+    $.blockUI();
     var data = getemailForm();
     fetch(sendemaildetail, {
         method:"POST",
@@ -21,14 +22,15 @@ function sendEmailInfo(){
         }
     }).then((res)=> res.json())
     .then((response)=> {
+        $.unblockUI();
         console.log(response);
         console.log(response.statusMessage);
         if(response.status == true){
             clearemailForm();
-            Swal.fire('An email has been sent, go to your mail box to verify')
+                document.getElementById("emailmsg").innerHTML = response.data; 
         }
         if(response.status != true){
-            Swal.fire(response.statusMessage);
+            document.getElementById("emailmsg").innerHTML = response.data; 
         }
     })
 }
@@ -48,10 +50,10 @@ function sendPinEmailInfo(){
         console.log(response.statusMessage);
         if(response.status == true){
             clearemailForm();
-            Swal.fire('An email has been sent, go to your mail box to verify')
+            document.getElementById("pinemailmsg").innerHTML = response.data; 
         }
         if(response.status != true){
-            Swal.fire(response.statusMessage);
+            document.getElementById("pinemailmsg").innerHTML = response.data; 
         }
     })
 }

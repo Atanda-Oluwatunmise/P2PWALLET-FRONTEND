@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins%3Awght%40400%3B500&display=swap%27%29%3B');
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #ececec;
+}
+
+.box-area {
+    width: 750px;
+}
+
+.forgot-text:hover{
+    text-decoration: underline !important;
+    color: #003f88 !important;
+}
+
+.btn-primary{
+    background: #003f88;
+    border: none;
+}
+.btn-primary:hover{
+    background: #2d5481;
+}
+
+.siguplink a{
+    color: #003f88;
+}
+
+
+.formInput{
+    position: relative;      
+}
+
+.formInput .fa-envelope-o{
+
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    z-index: 1;
+}    

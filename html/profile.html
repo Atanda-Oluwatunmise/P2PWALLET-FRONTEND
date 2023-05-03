@@ -16,7 +16,8 @@
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
         <script src = "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
     </head>  
 
         <body>
@@ -59,15 +60,19 @@
 
                 <main class="main-profile">
                     <div class='profile-sidebar'>
-                        <div class='profile-sidebar__menu-item' id="profileAccount" onclick="return defaultPage('page-one','page-two', 'page-three', 'page-four')">
+                        <div class='profile-sidebar__menu-item' id="profileAccount" onclick="return defaultPage('page-one','page-two', 'page-three', 'page-four', 'page-five')">
                             <i class="fa fa-home text-center mr-1"></i> 
                                 Account
                         </div>
-                        <div class='profile-sidebar__menu-item' id="side-password" onclick="return passwordPage('page-three','page-two', 'page-one', 'page-four'), editDataPasswordCall()">
+                        <div class='profile-sidebar__menu-item' id="profileAccount" onclick="return profileImagePage('page-five','page-two', 'page-three', 'page-four', 'page-one')">
+                            <i class="fa fa-file-picture-o text-center mr-1"></i> 
+                               Profile Picture
+                        </div>
+                        <div class='profile-sidebar__menu-item' id="side-password" onclick="return passwordPage('page-three','page-two', 'page-one', 'page-four','page-five'), getSecurityQuestion()">
                             <i class="fa fa-key text-center mr-1"></i> 
 							                Password
                         </div>
-                        <div class='profile-sidebar__menu-item' id="side-pin" onclick="return pinPage('page-four', 'page-one', 'page-three', 'page-two'), editDataPasswordCall()">
+                        <div class='profile-sidebar__menu-item' id="side-pin" onclick="return pinPage('page-four', 'page-one', 'page-three', 'page-two', 'page-five'), getSecurityQuestion()">
                             <i class="fa fa-user text-center mr-1"></i> 
 							                Pin
                         </div>
@@ -83,7 +88,7 @@
                           <h2>Account Settings</h2>
                         </div>
                         <div class='profile-main__content'>
-                          <div class='profile-main__avatar' id="display">
+                          <div class='profile-main__avatar'id="displayone" >
                             <div class='profile-main__avatar--overlay'>
                             </div>
                           </div>
@@ -101,7 +106,7 @@
                               <label class='profile-main__input-label'>Phone number:</label>
                               <input class='profile-main__input' placeholder='' type='text' id="editphonenumber">
                             </form>
-                            <button class='profile-btn profile-main__save-button'id="savebtN">Save</button>
+                            <button class='profile-btn profile-main__save-button'id="savebtN" onclick="submitInfo()">Save</button>
                           </div>                 
                           </div>
                           </div>
@@ -112,7 +117,7 @@
                               <h2>Personal Info</h2>
                             </div>
                             <div class='profile-main__content'>
-                              <div class='profile-main__avatar'>
+                              <div class='profile-main__avatar' id="displaytwo">
                                 <div class='profile-main__avatar--overlay'>
                                 </div>
                               </div>
@@ -135,7 +140,7 @@
                                     <span id="address-info"></span>
                                 </div>
                             </div> 
-                            <button class='edit-btn' onclick="return editPage('page-two', 'page-one', 'page-three', 'page-four'), editDataCall();" >Edit</button>
+                            <button class='edit-btn' onclick="return editPage('page-two', 'page-one', 'page-three', 'page-four', 'page-five'), editDataCall();" >Edit</button>
                       </div>
                       </div>
                     </div>
@@ -150,7 +155,7 @@
                               <label class='profile-main__input-label'>Old Password</label>
                               <input class='profile-main__input' placeholder='' type='password' id="oldpassword">
                               <label class='profile-main__input-label'>Security Question</label>
-                              <input class='profile-main__input' placeholder='' type='text' id="securityquestion" disabled>
+                              <textarea class='profile-main__input' placeholder='' type='text' id="securityquestion" disabled></textarea>
                               <label class='profile-main__input-label'>Security Answer</label>
                               <input class='profile-main__input' placeholder='' type='text' id="securityuserName">
                               <div class="form-inline">
@@ -178,7 +183,7 @@
                               <label class='profile-main__input-label pin'>Old Pin</label>
                               <input class='profile-main__input' placeholder='' type='password' id="oldpin">
                               <label class='profile-main__input-label pin'>Security Question</label>
-                              <input class='profile-main__input' placeholder='' type='text' id="pinquestion" disabled>
+                              <textarea class='profile-main__input' placeholder='' type='text' id="pinquestion" disabled></textarea>
                               <label class='profile-main__input-label pin'>Security Answer</label>
                               <input class='profile-main__input' placeholder='' type='text' id="pinanswer">
                               <div class="form-inline">
@@ -191,12 +196,31 @@
                              </div>
                             </form>
                             <button class='profile-btn profile-main__save-button' onclick="changeUserPin()">Save</button>
-                            <button class='edit-btn' onclick="loginPage();" >Forgot Pin</button>
-
+                            <!-- <button class='edit-btn' onclick="loginPage();" >Forgot Pin</button> -->
                           </div>                 
                           </div>
                           </div>
 
+                          <div id="page-five" class="profileActive" style="display: none;">
+                            <div class="profile-info">
+                            <div class='profile-main__header' id="newimage">
+                              <h2>Add Profile Picture</h2>
+                            </div>
+                            <div class='profile-main__content'>
+                              <div class='profile-main__avatar' id="displaythree">
+                                <div class='profile-main__avatar--overlay'>
+                                </div>
+                              </div>
+                              <div class="uploadBtn">
+                                <input type="file" id="uploadimageInput" accept="image/png, image/jpg">
+                                  <div class="addBtn">
+                                  <button class='edit-btn' id="imageUploadbtn">Upload</button>
+                                  <button class='edit-btn' id="deleteImagebtn">Delete</button>
+                                  </div>
+                              </div>
+                      </div>
+                      </div>
+                    </div>
                 </div>
                 <!-- </div> -->
                           

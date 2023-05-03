@@ -44,11 +44,12 @@ function getFormPin() {
 
 function clearpinForm(){
     document.getElementById("resetpin").value ="";
-    document.getElementById("resetpin").value ="";
+    document.getElementById("resetconfirmpin").value ="";
 }
 
 
 function resetPin(){
+    $.blockUI();
     data = getFormPin();
     fetch(resetpinurl,{
         method:'POST',
@@ -59,12 +60,13 @@ function resetPin(){
     }).then((res)=> res.json())
     .then((response) =>{
         console.log(response);
+        $.unblockUI();
         if(response.status != true){
-            document.getElementById("msg").innerHTML = "Pin Reset unsuccessful ):"; 
+            document.getElementById("pinemailmsg").style.color = "red".innerHTML = "Pin Reset unsuccessful ):"; 
         }
         if(response.status == true) {
         clearpinForm();
-        document.getElementById("msg").innerHTML = `Pin Reset Successful (: <a href="/html/login.html">Log in</a>`; 
+        document.getElementById("pinemailmsg").innerHTML = `Pin Reset Successful (: <a href="/html/login.html">Log in</a>`; 
         }
     })
 }

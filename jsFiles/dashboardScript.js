@@ -42,8 +42,6 @@ function pinNotification(){
                     showConfirmButton: true,
                     confirmButtonText: 'Okay!',
                     confirmButtonColor: "#003f88",
-                    // timer: 10000,
-                    // timerProgressBar: true,
                     didOpen: (toast) => {
                       toast.addEventListener('mouseenter', Swal.stopTimer)
                       toast.addEventListener('mouseleave', Swal.resumeTimer)
@@ -70,7 +68,6 @@ function pinNotification(){
                             </select>
                             <input type="" id="security-answer" class="swal2-input" placeholder="Enter your security answer">`,
                             focusConfirm: false,
-                            // showCancelButton: true,
                             inputAttributes:{
                                 width: '100px' 
                             },
@@ -86,14 +83,12 @@ function pinNotification(){
 
                                     if (pindata != confirmPin){
                                         Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
                                             text: 'Pin does not match',
                                             confirmButtonColor: "#003f88"                       
-                                    })
+                                        })
                                     }
-                                    // if ((pinData.Length || confirmPin.Length) < 4){
-                                    //     Swal.fire('Pin Length must be Four digits')
-
-                                    // }
                                     return { userPin: pindata}
                                 };
 
@@ -120,7 +115,12 @@ function pinNotification(){
                                 .then((response) => {
                                     console.log(response);
                                     if (response.status != true){
-                                        Swal.fire('Pin Creation Unsuccessful')
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Error!',
+                                            text: 'Pin Creation Unsuccessful!',
+                                            confirmButtonColor: "#003f88"                       
+                                        })
                                     }
 
                                     if (response.status == true){
@@ -136,10 +136,12 @@ function pinNotification(){
                                             console.log(response);
                                             if (response.status == true){
                                                 Swal.fire({
-                                                    text:'Pin Created Successfully',
-                                                    confirmButtonColor: "#003f88"                        
-                                            })
-                                        }
+                                                    icon: 'success',
+                                                    title: 'Success!',
+                                                    text: 'Pin Created Successfully',
+                                                    confirmButtonColor: "#003f88"  
+                                                })
+                                            }
 
                                         })
                                     }
@@ -193,7 +195,6 @@ function TransactionHistory() {
         let tabledata = '';
         console.log(objectdata.data)
         objectdata.data.forEach((values) => {
-            // tabledata += `<tr class="${values.transType === 'CREDIT' ? 'green-text' : 'red-text'}">`;
             tabledata += "<tr>";
             tabledata += "<td>" + values.senderInfo + "</td>";
             tabledata += "<td>" + values.currency + Intl.NumberFormat('en-US').format(values.txnAmount.toFixed(2)) + "</td>";
@@ -206,9 +207,7 @@ function TransactionHistory() {
         document.getElementById("table-body").innerHTML = tabledata;
         $(document).ready(function(){
             $('#table-head').DataTable();
-            
         });
-        
     })
 }
 TransactionHistory();

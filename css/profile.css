@@ -87,6 +87,7 @@
   
   .profile-main__avatar {
     /* background: url("https://unsplash.it/150/?image=209"); */
+    background: url("../images/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png");
     background-size: cover;
     width: 150px;
     height: 150px;
@@ -111,7 +112,7 @@
     transition: all 0.3s ease;
     cursor: pointer;
   }
-  
+
   .profile-main__settings-form {
     max-width: 80%;
     display: block;
@@ -186,7 +187,7 @@
     font-family: "Montserrat", sans-serif;
 }
 
-.edit-btn {
+.edit-btn {    
     margin: 25px 10px 3px 10px;
     font-family: "Montserrat", sans-serif;
     border: none;
@@ -203,6 +204,18 @@
     background-color: #3f6897;
 }   
 
+.addBtn {
+  display: flex;
+}
+
+#deleteImagebtn {
+  background-color: #c1121f;
+}
+
+#deleteImagebtn:hover {
+  background-color: #de4c56;
+}
+
 .form-inline {
     display: inline-block;
     width: 48%;
@@ -218,9 +231,6 @@
   margin-bottom: 10px;
 }
 
-.profileActive{
-  display: block;
-}
 
   @media (max-width: 764px) {
     .profile-sidebar {

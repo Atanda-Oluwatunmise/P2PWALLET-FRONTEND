@@ -26,11 +26,23 @@ pwShowHide.forEach(eyeIcon => {
 })
 
 
+function checkPayload(){
+    const queryParams = new URLSearchParams(window.location.search);
+    for (const value of queryParams.values()) {
+        if(value == null){
+            window.location.replace("http://127.0.1:5501/html/login.html")
+        }
+        else{
+            return window.location.href;
+        }
+    } 
+}
+
 const queryParams = new URLSearchParams(window.location.search);
 function getToken(){
     for (const value of queryParams.values()) {
         return value;
-    }   
+    }  
 }
 var usertoken = getToken();
 
@@ -48,6 +60,7 @@ function clearForm(){
 }
 
 function resetPassword(){
+    $.blockUI();
     data = getFormInfo();
     fetch(reseturl,{
         method:'POST',
@@ -57,13 +70,14 @@ function resetPassword(){
         }
     }).then((res)=> res.json())
     .then((response) =>{
+        $.unblockUI();
         console.log(response);
         if(response.status != true){
-            document.getElementById("msg").innerHTML = "Password Reset unsuccessful ):"; 
+            document.getElementById("msg").innerHTML = `${response.statusMessage} ):`;  
         }
         if(response.status == true){
         clearForm();
-        document.getElementById("msg").innerHTML = `Password Reset Successful (: <a href="/html/login.html">Log in</a>`; 
+        document.getElementById("msg").innerHTML = `${response.statusMessage} (: <a href="/html/login.html">Log in</a>`; 
         }
     })
 }
@@ -94,11 +108,11 @@ function resetPin(){
     .then((response) =>{
         console.log(response);
         if(response.status != true){
-            document.getElementById("msg").innerHTML = "Pin Reset unsuccessful ):"; 
+            document.getElementById("msg").innerHTML = `${response.statusMessage} ):`; 
         }
         if(response.status == true) {
         clearpinForm();
-        document.getElementById("msg").innerHTML = `Pin Reset Successful (: <a href="/html/login.html">Log in</a>`; 
+        document.getElementById("msg").innerHTML = `${response.statusMessage} (: <a href="/html/login.html">Log in</a>`; 
         }
     })
 }

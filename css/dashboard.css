@@ -492,5 +492,5 @@ input[type="button"]:hover{
 }
 
 .swal2-input, .swal2-file, .swal2-textarea {
-    width: 500px !important;
+    /* width: 500px !important; */
 }

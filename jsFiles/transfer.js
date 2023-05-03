@@ -95,7 +95,6 @@ function getDetails(){
                 detailsdata += "<p>" + values.accountName + "</p>";
                 detailsdata += "<p>" + values.accountNumber + "</p>";
             })
-            // console.log(details);
             document.getElementById("accountDetails").innerHTML = detailsdata;
             show();
         }
@@ -110,12 +109,9 @@ function makeTransfer() {
             html: `<input type="password" id="pin" class="swal2-input" placeholder="Pin">`,
 
             focusConfirm: false,
-            // showCancelButton: true,
             confirmButtonText: 'Submit',
             confirmButtonColor: '#003f88',
-            // showLoaderOnConfirm: true,
             preConfirm: () => {
-
                     function getPin(){
                         const pindata = Swal.getPopup().querySelector('#pin').value
                         return { userPin: pindata}
@@ -153,6 +149,8 @@ function makeTransfer() {
                         confirmButtonText: 'Yes, Make Transfer!'
                       }).then((result) => {
                         if (result.isConfirmed) {
+                            // $.blockUI({ css: { backgroundcolor: '#fff' } }); 
+                            $.blockUI();
                             let data = getTransferForm();
                                 fetch(transfertxn, {
                                     method: "PUT",
@@ -164,7 +162,9 @@ function makeTransfer() {
                                 }).then((res) => res.json())
                                   .then((response) => {
                                     console.log(response);
+                                    $.unblockUI();  
                                         if(response.status == true){
+                                                      
                                             Swal.fire({
                                                 title:'Success!',
                                                 text:'Your transaction is successful',

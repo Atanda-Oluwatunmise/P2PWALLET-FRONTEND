@@ -73,7 +73,6 @@ function clearFormUser() {
 
 function submitForm() {
     let data = getFormUser();
-
     fetch(userregister, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -87,8 +86,8 @@ function submitForm() {
     }
 
 function submitLogin() {
+    $.blockUI({ message: '<h2>Just a moment...</h3>' });
     let data = loginUser();
-
     fetch(userlogin, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -97,6 +96,7 @@ function submitLogin() {
         }
     }).then((res)=> res.json())
       .then((res) => {
+        $.unblockUI();            
         console.log(res);
         if (res.status == true){
             localStorage.setItem("bearer", res.data.token);

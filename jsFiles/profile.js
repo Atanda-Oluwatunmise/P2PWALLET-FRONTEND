@@ -1,41 +1,55 @@
 var accountdetail = "http://localhost:5127/api/User/accountdetails";
 var uploadimage = "http://localhost:5127/api/User/uploadimage";
+var displayimage = "http://localhost:5127/api/User/displayimage";
+var deleteimage = "http://localhost:5127/api/User/deleteimage";
 var updateinfo = "http://localhost:5127/api/User/editinfo";
 var changepassword = "http://localhost:5127/api/Authentication/changepassword";
 var changepin = "http://localhost:5127/api/Authentication/changepin";
 var getsecurity = "http://localhost:5127/api/Authentication/getsecuritydetail";
 
 
-function editPage (show, hideOne, hideTwo, hideThree) {    
+function editPage (show, hideOne, hideTwo, hideThree, hideFour) {    
     document.getElementById(show).style.display="block";
     document.getElementById(hideOne).style.display='none';
     document.getElementById(hideTwo).style.display='none';
     document.getElementById(hideThree).style.display='none';
+    document.getElementById(hideFour).style.display='none';
     return false;
 }
 
-function defaultPage(show, hideOne, hideTwo, hideThree) {
+function defaultPage(show, hideOne, hideTwo, hideThree, hideFour) {
     document.getElementById(show).style.display="block";
     document.getElementById(hideOne).style.display='none';
     document.getElementById(hideTwo).style.display='none';
     document.getElementById(hideThree).style.display='none';
+    document.getElementById(hideFour).style.display='none';
     return false;
 }
 
-
-function passwordPage(show, hideOne, hideTwo, hideThree) {
+function passwordPage(show, hideOne, hideTwo, hideThree, hideFour) {
     document.getElementById(show).style.display="block";
     document.getElementById(hideOne).style.display='none';
     document.getElementById(hideTwo).style.display='none';
     document.getElementById(hideThree).style.display='none';
+    document.getElementById(hideFour).style.display='none';
     return false;
 }
 
-function pinPage(show, hideOne, hideTwo, hideThree) {
+function pinPage(show, hideOne, hideTwo, hideThree, hideFour) {
     document.getElementById(show).style.display="block";
     document.getElementById(hideOne).style.display='none';
     document.getElementById(hideTwo).style.display='none';
     document.getElementById(hideThree).style.display='none';
+    document.getElementById(hideFour).style.display='none';
+    return false;
+}
+
+function profileImagePage(show, hideOne, hideTwo, hideThree, hideFour) {
+    document.getElementById(show).style.display="block";
+    document.getElementById(hideOne).style.display='none';
+    document.getElementById(hideTwo).style.display='none';
+    document.getElementById(hideThree).style.display='none';
+    document.getElementById(hideFour).style.display='none';
     return false;
 }
 
@@ -48,17 +62,12 @@ function logOut() {
     loadLogin();
 }
 
-const imageInput = document.querySelector("#image_input");
-imageInput.addEventListener("change", function(){
-// const uploadBtn = document.getElementById("savebtN");
-// uploadBtn.addEventListener("submit", function(e) {
-//     e.preventDefault();
-
-    // const inputFile = document.getElementById("savebtN");
-    const photoUpload = document.getElementById("image_input").files[0];
+const addimage = document.querySelector("#imageUploadbtn");
+addimage.addEventListener("click", function(){
+    const addphoto = document.getElementById("uploadimageInput").files[0];
 
     const formData = new FormData();
-    formData.append("imagePath", photoUpload)
+    formData.append("imagePath",addphoto);
     console.log(formData);
     const bearer = localStorage.getItem("bearer");
 
@@ -71,31 +80,116 @@ imageInput.addEventListener("change", function(){
     }).then((res) => res.json())
     .then((response) => {
         console.log(response);
-    })
-
-// })
+        if (response.status == true){
+            Swal.fire({
+                title:"Successful",
+                text: response.data,
+                icon: "success",
+                confirmButtonColor: '#003f88',
+                preConfirm: () => {
+                    loadprofile();    
+                    }
+                })
+            }  
+        })
 })
 
 
-
-
 // const imageInput = document.querySelector("#image_input");
-// var uploaded_Image = "";
-
 // imageInput.addEventListener("change", function(){
-//     const reader = new FileReader();
-//     reader.addEventListener("load", () => {
-//         uploaded_Image = reader.result;
-//         document.querySelectorAll(".profile-main__avatar").forEach(item => {
-//             item.style.backgroundImage = `url(${uploaded_Image})`;
-//         })
-//     });
-//     reader.readAsDataURL(this.files[0]);
+//     const photoUpload = document.getElementById("image_input").files[0];
+
+//     const formData = new FormData();
+//     formData.append("imagePath", photoUpload)
+//     console.log(formData);
+//     const bearer = localStorage.getItem("bearer");
+
+//     fetch(uploadimage, {
+//         method: "POST",
+//         body: formData,
+//         headers: {
+//             Authorization: `bearer ${bearer}`
+//         }
+//     }).then((res) => res.json())
+//     .then((response) => {
+//         console.log(response);
+//     })
 // })
-// var uploaded_Image ="";
 
+function displayBase64Image(placeholder, base64Image) {
+    var image = document.createElement('img');
+    image.onload = function() {
+        placeholder.innerHTML = '';
+        placeholder.appendChild(this);
+    }
+    image.src = base64Image;
+}
 
+function displayImage(){
+    const bearer = localStorage.getItem("bearer");
+      fetch(displayimage, {
+        headers:{
+            "content-type":"application/json",
+            Authorization: `bearer ${bearer}`
+        }
+      }).then((res) => res.json())
+      .then((response)=> {
+        // console.log(response)
+        if(response != null){
+            //specify the content type and content endcoding
+            var resp = "data:image/png;charset=utf-8;base64," + response.imagePath;
+            // console.log(resp);
+            var imagePlaceholder = document.getElementById("displayone");
+            var imagePlaceholdertwo = document.getElementById("displaytwo");
+            var imagePlaceholderthree = document.getElementById("displaythree");
+            displayBase64Image(imagePlaceholder, resp);
+            displayBase64Image(imagePlaceholdertwo, resp);
+            displayBase64Image(imagePlaceholderthree, resp);
+            }  
+        })
+    }
+displayImage();
 
+function deleteUploadedImage() {
+    document.getElementById("deleteImagebtn").addEventListener("click", function(){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#003f88',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Delete Image!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            $.blockUI();
+            const bearer = localStorage.getItem("bearer");
+            fetch(deleteimage, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `bearer ${bearer}`
+                }
+            }).then((res) => res.json())
+            .then((response) => {
+                $.unblockUI();
+                console.log(response);
+                if (response.status == true){
+                    Swal.fire({
+                        title:"Successful",
+                        text: response.data,
+                        icon: "success",
+                        confirmButtonColor: '#003f88',
+                        preConfirm: () => {
+                            loadprofile();    
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    })
+}
+deleteUploadedImage();
 
 function fetchInfo() {
     const bearer = localStorage.getItem("bearer");
@@ -132,14 +226,14 @@ function clearFormData() {
     document.getElementById("editphonenumber").value = "";
 }
 
-function getFormInfo() {
-    return {
-        firstName:document.getElementById("editfirstname").value,
-        lastName:document.getElementById("editlastname").value,
-        address:document.getElementById("editaddress").value,
-        phonenumber:document.getElementById("editphonenumber").value
-    }
-}
+// function getFormInfo() {
+//     return {
+//         firstName:document.getElementById("editfirstname").value,
+//         lastName:document.getElementById("editlastname").value,
+//         address:document.getElementById("editaddress").value,
+//         phonenumber:document.getElementById("editphonenumber").value
+//     }
+// }
 
 function setFormData(firstName,lastName,address,phonenumber) {
     document.getElementById("editfirstname").value = firstName; 
@@ -156,12 +250,10 @@ function setPinFormData(question) {
     document.getElementById("pinquestion").value = question; 
 }
 
-
 var editFormData;
 
 function editDataCall() {
     const bearer = localStorage.getItem("bearer");
-
     // call get user details by id API
     fetch(accountdetail,{
         method:"GET",
@@ -190,10 +282,8 @@ function editDataCall() {
     })
 }
 
-
-function editDataPasswordCall() {
+function getSecurityQuestion() {
     const bearer = localStorage.getItem("bearer");
-
     // call get user details by id API
     fetch(getsecurity,{
         method:"GET",
@@ -203,7 +293,6 @@ function editDataPasswordCall() {
         }
     }).then((res)=>res.json()).then((response)=>{
         console.log("Edit info",response);
-
         let respval = Object.values(response.data)
         console.log(respval);
         questionInfo ='';
@@ -213,28 +302,69 @@ function editDataPasswordCall() {
             questionInfo += elements;
             setPasswordFormData(questionInfo);
             setPinFormData(questionInfo);
-
-          }
+        }
     })
 }
 
-
 // edit Info
 function editUser() {
+    $.blockUI();
+
+            // const firstName =document.getElementById("editfirstname").value;
+            // const lastName = document.getElementById("editlastname").value;
+            // const address = document.getElementById("editaddress").value;
+            // const phonenumber = document.getElementById("editphonenumber").value;
+
+
+    // const imageInput = document.querySelector("#image_input");
+    const photoUpload = document.getElementById("image_input").files[0];
+
+    const formData = new FormData();
+    formData.append("imagePath", photoUpload)
+    // formData.append("firstName", firstName)
+    // formData.append("lastName", lastName)
+    // formData.append("address", address)
+    // formData.append("phonenumber", phonenumber)
+    console.log(formData);
+   
+
+    function getFormInfo() {
+        return {
+            imageFile: formData,
+            firstName:document.getElementById("editfirstname").value,
+            lastName:document.getElementById("editlastname").value,
+            address:document.getElementById("editaddress").value,
+            phonenumber:document.getElementById("editphonenumber").value
+        }
+    }
     const bearer = localStorage.getItem("bearer");
     var data = getFormInfo();
     fetch(updateinfo, {
         method: 'PUT',
-        body: JSON.stringify(data),
+        body: data,
         headers: {
             "content-type": "application/json",
             Authorization: `bearer ${bearer}`
         }
     }).then((res)=>res.json()).then((response)=>{
             console.log(response);
+            $.unblockUI();
             if(response.status == true){
                 clearFormData();
-                Swal.fire('Data Edited Successfully');
+                Swal.fire({
+                    title:'Successful!',
+                    text:'Details Updated Successfully :)',
+                    confirmButtonColor: '#003f88',
+                    icon:'success'
+                })
+            }
+            if(response.status != true){
+                Swal.fire({
+                    title:'Error!',
+                    text:'Details cannot be updated :)',
+                    confirmButtonColor: '#003f88',
+                    icon:'error'
+                })
             }
     })
 }
@@ -253,7 +383,6 @@ function getPasswordForm() {
     }
 }
 
-
 function clearPasswordData() {
     document.getElementById("securityquestion").value = ""; 
     document.getElementById("securityuserName").value = ""; 
@@ -263,6 +392,7 @@ function clearPasswordData() {
 }
 
 function changeUserPassword(){
+    $.blockUI();
     const bearer = localStorage.getItem("bearer");
     var data = getPasswordForm();
     fetch(changepassword, {
@@ -274,14 +404,25 @@ function changeUserPassword(){
         }
     }).then((res)=> res.json())
     .then((response)=> {
+        $.unblockUI();
         console.log(response);
         if(response.status == true){
             clearPasswordData();
-            Swal.fire('Successful', 'Password Changed Successfully', 'success')
+            Swal.fire({
+                title:'Successful!',
+                text:'Password Changed Successfully :)',
+                confirmButtonColor: '#003f88',
+                icon:'success'
+            })
         }
         
         if(response.status != true){
-            Swal.fire('Unsuccessful', 'Password Change failed', 'error')
+            Swal.fire({
+                title:'Unsuccessful!',
+                text:'Password Change failed :(',
+                confirmButtonColor: '#003f88',
+                icon:'error'
+            })
         }
     })
 }
@@ -289,7 +430,6 @@ function changeUserPassword(){
 function getPinForm() {
     return {
         currentPin:document.getElementById("oldpin").value,
-        // question:document.getElementById("pinquestion").value,
         answer:document.getElementById("pinanswer").value,
         newPin:document.getElementById("newpin").value,
         confirmPin:document.getElementById("confirmpin").value
@@ -305,6 +445,7 @@ function clearPinForm() {
 }
 
 function changeUserPin(){
+    $.blockUI();
     const bearer = localStorage.getItem("bearer");
     var data = getPinForm();
     fetch(changepin, {
@@ -316,17 +457,32 @@ function changeUserPin(){
         }
     }).then((res)=> res.json())
     .then((response)=> {
+        $.unblockUI();
         console.log(response);
         if(response.status == true){
             clearPinForm();
-            Swal.fire('Pin Changed Successfully')
+            Swal.fire({
+                title:'Successful!',
+                text:'Pin Changed Successfully :)',
+                confirmButtonColor: '#003f88',
+                icon:'success'
+            })
         }
         if(response.status != true){
-            Swal.fire('Pin Change is Unsuccessful')
+            Swal.fire({
+                title:'Unsuccessful!',
+                text:'Pin Change failed :(',
+                confirmButtonColor: '#003f88',
+                icon:'error'
+            })
         }
     })
 }
 
 function loginPage(){
     window.location.replace("http://127.0.0.1:5500/html/addpinemail.html");
+}
+
+function loadprofile(){
+    window.location.replace("http://127.0.0.1:5500/html/profile.html");
 }
